@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ToDo extends Model
 {
     //
-    protected $table = 'ToDo';
+    protected $table = 'todo';
     protected $fillable = [
         'user_id',
         'product_name',
