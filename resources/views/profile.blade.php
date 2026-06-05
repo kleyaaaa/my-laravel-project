@@ -36,10 +36,8 @@
             </form>
         </div>
 
-        {{-- RIGHT: User Info + Change Password --}}
+        {{-- RIGHT: Name + Email + Password --}}
         <div class="col card pt-4 px-5">
-
-            {{-- Update Profile --}}
             <form method="POST" action="/updateProfile" enctype="multipart/form-data">
                 @csrf
                 <h3 class="mb-1 text-dark fw-bold">User Profile</h3>
@@ -52,37 +50,28 @@
                     <label class="form-label text-dark fw-medium">Email</label>
                     <input type="email" name="email" value="{{ session('user')->email }}" class="form-control">
                 </div>
-                <div class="row mb-3">
-                    <button type="submit" class="btn btn-primary px-4">Update Profile</button>
-                </div>
-            </form>
 
-            <hr>
-
-            {{-- Change Password --}}
-            <form method="POST" action="/updatePassword">
-                @csrf
+                <hr>
                 <h3 class="mb-1 text-dark fw-bold">Change Password</h3>
                 <hr>
                 <div class="row mb-3">
                     <label class="form-label text-dark fw-medium">Current Password</label>
-                    <input type="password" name="current_password" class="form-control" placeholder="Enter current password" required>
+                    <input type="password" name="current_password" class="form-control" placeholder="Enter current password">
                 </div>
                 <div class="row mb-3">
                     <label class="form-label text-dark fw-medium">New Password</label>
-                    <input type="password" name="new_password" class="form-control" placeholder="Enter new password" required>
+                    <input type="password" name="new_password" class="form-control" placeholder="Enter new password">
                 </div>
                 <div class="row mb-3">
                     <label class="form-label text-dark fw-medium">Confirm New Password</label>
-                    <input type="password" name="new_password_confirmation" class="form-control" placeholder="Confirm new password" required>
+                    <input type="password" name="new_password_confirmation" class="form-control" placeholder="Confirm new password">
                 </div>
                 <div class="row mb-3">
-                    <button type="submit" class="btn btn-success px-4 text-white">Change Password</button>
+                    <button type="submit" class="btn btn-success w-100">Save Changes</button>
                 </div>
             </form>
-
         </div>
-    </div>
 
+    </div>
 </div>
 @endsection
