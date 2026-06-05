@@ -31,6 +31,11 @@
                         <img src="/images/default.jpg" class="rounded-circle img-fluid mb-3 mx-auto" width="200"><br>
                     @endif
                     <input type="file" name="profile" class="form-control mb-2">
+
+                    <div class="row mb-3">
+                        <button type="submit" class="btn btn-primary px-4">Update Image</button>
+                    </div>
+
                 </div>
             </div>
 
@@ -45,9 +50,6 @@
                     <div class="row mb-3">
                         <label class="form-label text-dark fw-medium">Email</label>
                         <input type="email" name="email" value="{{ session('user')->email }}" class="form-control">
-                    </div>
-                    <div class="row mb-3">
-                        <button type="submit" class="btn btn-primary px-4">Update Profile</button>
                     </div>
                 </div>
             </div>
@@ -74,7 +76,7 @@
                     <input type="password" name="new_password_confirmation" class="form-control" placeholder="Confirm new password" required>
                 </div>
                 <div class="row mb-3">
-                    <button type="submit" class="btn btn-warning px-4 text-white">Change Password</button>
+                    <button type="submit" class="btn btn-success px-4 text-white">Change Password</button>
                 </div>
             </form>
         </div>
