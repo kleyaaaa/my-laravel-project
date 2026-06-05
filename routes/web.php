@@ -51,8 +51,6 @@ Route::get('/profile', [ProfileController::class, 'showProfile'])->name('display
 //Update Profile
 Route::post('/updateProfile', [ProfileController::class, 'update_profile']);
 
-Route::post('/updatePassword', [ProfileController::class, 'update_password']);
-
 //logout
 Route::get('/logout', [LogoutController::class, 'logout']);
 
