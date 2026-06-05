@@ -40,7 +40,7 @@ class ToDoController extends Controller
         'price'        => $request->price,
     ]);
 
-    return redirect()->route('todo.show')->with('success', 'Product added successfully!');
+    return redirect()->route('todo')->with('success', 'Product added successfully!');
 
 }
 
