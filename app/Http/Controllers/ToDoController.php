@@ -7,6 +7,10 @@ use App\Models\ToDo;
 
 class ToDoController extends Controller
 {
+    public function showToDo() {
+        $todos = ToDo::where('user_id', session('user')->id)->get();
+        return view('todo', compact('todos'));
+    }
     public function showUser() {
         $todos = ToDo::all();
         return view('todo', compact('todos'));
