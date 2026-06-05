@@ -4,7 +4,6 @@
 <div class="container mt-4">
     <h2 class="text-dark mb-4 fw-bold">My Profile</h2>
 
-    {{-- Success/Error Messages --}}
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show">
             {{ session('success') }}
@@ -18,12 +17,13 @@
         </div>
     @endif
 
-    {{-- UPDATE PROFILE FORM --}}
-    <form method="POST" action="/updateProfile" enctype="multipart/form-data">
-        @csrf
-        <div class="row">
-            <div class="col-sm-3 card p-3 me-3 text-center">
-                <div class="mb-3">
+    <div class="row">
+
+        {{-- LEFT: Profile Picture --}}
+        <div class="col-sm-3 me-3">
+            <form method="POST" action="/updateProfile" enctype="multipart/form-data">
+                @csrf
+                <div class="card p-3 text-center">
                     <label>Profile Picture</label><br><br>
                     @if(session('user')->profile_pic)
                         <img src="/uploads/{{ session('user')->profile_pic }}" class="rounded-circle img-fluid mb-3 mx-auto" width="200"><br>
@@ -31,38 +31,39 @@
                         <img src="/images/default.jpg" class="rounded-circle img-fluid mb-3 mx-auto" width="200"><br>
                     @endif
                     <input type="file" name="profile" class="form-control mb-2">
-
-                    <div class="row mb-3">
-                        <button type="submit" class="btn btn-primary px-4">Update Image</button>
-                    </div>
-
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Update Image</button>
                 </div>
-            </div>
-
-            <div class="col card pt-5 px-5">
-                <div class="row mb-3">
-                    <h3 class="mb-1 text-dark fw-bold">User Profile</h3>
-                    <hr>
-                    <div class="row mb-3">
-                        <label class="form-label text-dark fw-medium">Name</label>
-                        <input type="text" name="name" value="{{ session('user')->name }}" class="form-control">
-                    </div>
-                    <div class="row mb-3">
-                        <label class="form-label text-dark fw-medium">Email</label>
-                        <input type="email" name="email" value="{{ session('user')->email }}" class="form-control">
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
 
-    {{-- CHANGE PASSWORD FORM --}}
-    <div class="row mt-4">
-        <div class="col card p-4">
-            <h3 class="mb-1 text-dark fw-bold">Change Password</h3>
+        {{-- RIGHT: User Info + Change Password --}}
+        <div class="col card pt-4 px-5">
+
+            {{-- Update Profile --}}
+            <form method="POST" action="/updateProfile" enctype="multipart/form-data">
+                @csrf
+                <h3 class="mb-1 text-dark fw-bold">User Profile</h3>
+                <hr>
+                <div class="row mb-3">
+                    <label class="form-label text-dark fw-medium">Name</label>
+                    <input type="text" name="name" value="{{ session('user')->name }}" class="form-control">
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label text-dark fw-medium">Email</label>
+                    <input type="email" name="email" value="{{ session('user')->email }}" class="form-control">
+                </div>
+                <div class="row mb-3">
+                    <button type="submit" class="btn btn-primary px-4">Update Profile</button>
+                </div>
+            </form>
+
             <hr>
+
+            {{-- Change Password --}}
             <form method="POST" action="/updatePassword">
                 @csrf
+                <h3 class="mb-1 text-dark fw-bold">Change Password</h3>
+                <hr>
                 <div class="row mb-3">
                     <label class="form-label text-dark fw-medium">Current Password</label>
                     <input type="password" name="current_password" class="form-control" placeholder="Enter current password" required>
@@ -79,6 +80,7 @@
                     <button type="submit" class="btn btn-success px-4 text-white">Change Password</button>
                 </div>
             </form>
+
         </div>
     </div>
 

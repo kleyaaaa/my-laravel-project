@@ -35,4 +35,27 @@ class ProfileController extends Controller
 
         return back()->with('success', 'User Profile updated successfully');
     }
+    
+     public function update_password(Request $request){
+        $user = User::find(session('user')->id);
+
+        if(!password_verify($request->current_password, $user->password)){
+            return back()->with('error', 'Current password is incorrect.');
+        }
+
+        if($request->new_password !== $request->new_password_confirmation){
+            return back()->with('error', 'New passwords do not match.');
+        }
+
+        if(strlen($request->new_password) < 8){
+            return back()->with('error', 'Password must be at least 8 characters.');
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        session(['user' => $user->fresh()]);
+
+        return back()->with('success', 'Password changed successfully!');
+    }
 }
